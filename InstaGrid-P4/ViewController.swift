@@ -244,5 +244,13 @@ extension ViewController {
         // Fermer le sélecteur
         dismiss(animated: true)
     }
+    
+    /// Indique que l'utilisateur a annulé l'opération de sélection
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
+        // Fermer le sélecteur
+        dismiss(animated: true)
+    }
+    
 }
 
