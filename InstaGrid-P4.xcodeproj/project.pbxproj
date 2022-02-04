@@ -14,6 +14,8 @@
 		D146890F27AD7922008F8DD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146890D27AD7922008F8DD7 /* LaunchScreen.storyboard */; };
 		D146891727AD7AE1008F8DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D146891627AD7AE1008F8DD7 /* Assets.xcassets */; };
 		D146891C27AD7B6B008F8DD7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D146891B27AD7B6B008F8DD7 /* Info.plist */; };
+		D146891D27AD7BFC008F8DD7 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D146891927AD7AFA008F8DD7 /* ThirstySoftRegular.otf */; };
+		D146891E27AD7BFE008F8DD7 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D146891827AD7AF5008F8DD7 /* Delm-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,8 @@
 			files = (
 				D146891C27AD7B6B008F8DD7 /* Info.plist in Resources */,
 				D146890F27AD7922008F8DD7 /* LaunchScreen.storyboard in Resources */,
+				D146891E27AD7BFE008F8DD7 /* Delm-Medium.otf in Resources */,
+				D146891D27AD7BFC008F8DD7 /* ThirstySoftRegular.otf in Resources */,
 				D146891727AD7AE1008F8DD7 /* Assets.xcassets in Resources */,
 				D146890A27AD7920008F8DD7 /* Main.storyboard in Resources */,
 			);
