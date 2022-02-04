@@ -9,7 +9,7 @@ import UIKit
 import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
-
+    
     
     // Connexion des éléments du storyboard grace au control drag
     // Outlets : Optionnal déballé car c'est toujours le cas avec les Outlets
@@ -35,17 +35,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Appelé après le chargement de la vue du contrôleur en mémoire
     // Cette méthode est lancée directement dans notre application
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         // Créer et ajouter un outil de reconnaissance de gestes tactiles pour le 4 UIImageView
-            // Les selectors permettent de passer en parametre une fonction
-            // UiTapGesture permet de gerer les gestes de l'utilisateur sur l'ecran tactiles
-            // Il a besoin de trois infos :
-            /// Target : Le responsable de "gérer de geste", le controleur le plus souvent
-            /// Action : Quelle action effectuer ?
-            /// La view : quelle vue doit détecter le geste ?
-            // La méthode contient un parametre donc je dois le préciser comme ceci : function(_:)
+        // Les selectors permettent de passer en parametre une fonction
+        // UiTapGesture permet de gerer les gestes de l'utilisateur sur l'ecran tactiles
+        // Il a besoin de trois infos :
+        /// Target : Le responsable de "gérer de geste", le controleur le plus souvent
+        /// Action : Quelle action effectuer ?
+        /// La view : quelle vue doit détecter le geste ?
+        // La méthode contient un parametre donc je dois le préciser comme ceci : function(_:)
         let tapTopLeft = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
         let tapTopRight = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
         let tapBottomRight = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
@@ -60,7 +60,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     /// Un boutton UI a été tappé
     /// Fonction qui permet d'ajouter le style selectionné pour un bouton du Layout
-
+    
     @IBAction func didTapeButton(_ sender: UIButton) {
         
         // Réinitialise tous les boutons dans le style sélectionné
@@ -160,7 +160,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pictureView.transform = CGAffineTransform(scaleX: 0, y: 0)
         
         // Animation de la vue de l'image et la réapparition de l'icône/étiquette avec un effet de rebond
-          UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
             self.pictureView.transform = .identity
             self.swipeLabel.transform = .identity
             self.iconSwipe.transform = .identity
@@ -220,7 +220,7 @@ extension ViewController {
     ///
     /// - parameter gesture: Tap gesture
     @objc private func didTapView(_ gesture: UITapGestureRecognizer){
-    
+        
         
         // Vérifiez si la vue tapée est une UIImageView
         guard let view = gesture.view as? UIImageView else { return }
@@ -252,5 +252,55 @@ extension ViewController {
         dismiss(animated: true)
     }
     
+    /// Vérifier l'autorisation d'accès à la photothèque
+    private func checkAuthorization() {
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            
+            // Vérifier le statut de l'autorisation
+            switch status{
+                // si c'est autorisé ET la PhotoLibrary est disponible
+            case .authorized where UIImagePickerController.isSourceTypeAvailable(.photoLibrary):
+                
+                // Créer un sélecteur d'image
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.allowsEditing = false
+                imagePicker.sourceType = .photoLibrary
+                
+                // Présente le sélecteur d'image
+                DispatchQueue.main.async {
+                    self.present(imagePicker, animated: true)
+                }
+                
+            default:
+                
+                // Popup d'alerte
+                let alert = UIAlertController(title: "", message: "You've refused the access to your photo library, grant the access in your phone settings", preferredStyle: .alert)
+                
+                // Bouton Paramètres
+                let settings = UIAlertAction(title: "Settings", style: .default) { _ in
+                    
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                    
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl)
+                    }
+                }
+                
+                // Boutton d'annulation
+                let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+                
+                // Ajout des actions
+                alert.addAction(cancel)
+                alert.addAction(settings)
+                
+                // Affichage de l'alerte
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
 }
 
