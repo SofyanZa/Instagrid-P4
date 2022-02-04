@@ -31,6 +31,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
+        // Vérification de l'orientation actuelle de l'appareil
+        checkOrientation()
+        
     }
     
     // Appelé après le chargement de la vue du contrôleur en mémoire
