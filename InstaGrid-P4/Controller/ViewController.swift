@@ -273,6 +273,7 @@ extension ViewController {
         dismiss(animated: true)
     }
     
+    
     /// Vérifier l'autorisation d'accès à la photothèque
     private func checkAuthorization() {
         
