@@ -91,5 +91,40 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    /// La pictureView a été swipée
+    ///
+    /// - parameter gesture: UISwipeGestureRecognizer
+    /// UISwipeGestureRecognizer reconnaît un balayage lorsque l'utilisateur déplace le nombre spécifié de touches dans une direction autorisée suffisamment loin pour créer un balayage.
+    @objc private func didSwipeView(_ gesture: UISwipeGestureRecognizer) {
+        
+        // Création des constantes pour la hauteur et la largeur de l'écran
+        let screenHeight = UIScreen.main.bounds.height
+        let screenWidth = UIScreen.main.bounds.width
+        // Declaration de CGAffineTranform
+        let translationTransform: CGAffineTransform
+        
+        // Définissez la translationTransform en fonction de la direction du geste de balayage
+        // Si l'utilisateur swipe vers le haut
+        if gesture.direction == .up {
+            translationTransform = CGAffineTransform(translationX: 0, y: -screenHeight)
+            // Sinon
+        } else {
+            translationTransform = CGAffineTransform(translationX: -screenWidth, y: 0)
+        }
+        
+        // Anime la transformation de pictureView
+        UIView.animate(withDuration: 0.2, animations: {
+            self.pictureView.transform = translationTransform
+            self.swipeLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+            self.iconSwipe.transform = CGAffineTransform(scaleX: 0, y: 0)
+        }) { (succes) in
+            // // Si l'animation est réussie, on lance la fonction convertAndShareView
+            if succes {
+                self.convertAndShareView()
+            }
+        }
+    }
+    
 }
 
