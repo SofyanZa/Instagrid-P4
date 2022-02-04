@@ -56,5 +56,22 @@ class ViewController: UIViewController {
         
     }
     
+    /// Un boutton UI a été tappé
+    /// Fonction qui permet d'ajouter le style selectionné pour un bouton du Layout
+
+    @IBAction func didTapeButton(_ sender: UIButton) {
+        
+        // Réinitialise tous les boutons dans le style sélectionné
+        buttonRight.isSelected = false
+        buttonCenter.isSelected = false
+        buttonLeft.isSelected = false
+        
+        // Ajoute le style isselected à l'expéditeur et lui attribue le nouveau style pour désigné que ce bouton est séléctionné
+        sender.isSelected = true
+        
+        // // Changement de style de l'imageVue
+        changeStyle(sender)
+    }
+    
 }
 
