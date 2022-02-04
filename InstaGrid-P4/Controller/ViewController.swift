@@ -13,6 +13,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Connexion des éléments du storyboard grace au control drag
     // Outlets : Optionnal déballé car c'est toujours le cas avec les Outlets
+    @IBOutlet var themeView: Theme!
     @IBOutlet weak var iconSwipe: UIImageView!
     @IBOutlet weak var swipeLabel: UILabel!
     @IBOutlet weak var buttonRight: UIButton!
@@ -59,6 +60,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomLeftImageView.addGestureRecognizer(tapBottomLeft)
         
         
+    }
+    
+    // Tells the receiver that a motion event has ended.
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        
+        // Check the type of motion event
+        guard motion == .motionShake else { return }
+        
+        // Switch the theme
+        themeView.theme = themeView.theme.toggleTheme
     }
     
     /// Un boutton UI a été tappé
