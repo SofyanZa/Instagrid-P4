@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Photos
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     
     // Connexion des éléments du storyboard grace au control drag
@@ -45,10 +46,10 @@ class ViewController: UIViewController {
             /// Action : Quelle action effectuer ?
             /// La view : quelle vue doit détecter le geste ?
             // La méthode contient un parametre donc je dois le préciser comme ceci : function(_:)
-        let tapTopLeft = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
-        let tapTopRight = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
-        let tapBottomRight = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
-        let tapBottomLeft = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
+        let tapTopLeft = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        let tapTopRight = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        let tapBottomRight = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        let tapBottomLeft = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
         topLeftImageView.addGestureRecognizer(tapTopLeft)
         topRightImageView.addGestureRecognizer(tapTopRight)
         bottomRightImageView.addGestureRecognizer(tapBottomRight)
@@ -209,6 +210,39 @@ extension ViewController {
         
         // Et on ajoute le nouveau geste
         pictureView.addGestureRecognizer(swipe)
+    }
+}
+
+// MARK: - Accessibilité aux photos de l'appareil
+extension ViewController {
+    
+    /// Une UIImageView a été tapée
+    ///
+    /// - parameter gesture: Tap gesture
+    @objc private func didTapView(_ gesture: UITapGestureRecognizer){
+    
+        
+        // Vérifiez si la vue tapée est une UIImageView
+        guard let view = gesture.view as? UIImageView else { return }
+        
+        // Affecte une nouvelle valeur à viewTapped
+        viewTapped = view
+    }
+    
+    /// Indique que l'utilisateur a sélectionné une image fixe.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // Vérifiez si l'image sélectionnée par l'utilisateur est une UIImage
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            // Changer l'image et le mode de contenu dans viewTappedhange the image and content mode in viewTapped
+            viewTapped!.contentMode = .scaleAspectFill
+            viewTapped!.clipsToBounds = true
+            viewTapped!.image = selectedImage
+        }
+        
+        // Fermer le sélecteur
+        dismiss(animated: true)
     }
 }
 
