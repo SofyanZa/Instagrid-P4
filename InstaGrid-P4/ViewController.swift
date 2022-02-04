@@ -170,6 +170,45 @@ class ViewController: UIViewController {
             }
         })
     }
+}
+
+// MARK: - Orientation de l'appareil
+extension ViewController {
     
+    // Fonction qui Avertit le conteneur que la taille de sa vue est sur le point de changer
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        // On lance la fonction de verification de l'orientation de l'appareil
+        checkOrientation()
+    }
+    
+    /// Fonction pour verifier l'orientation de l'appareil
+    private func checkOrientation() {
+        
+        // Créeation des gestes de balayage
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(didSwipeView(_:)))
+        
+        // Change selon l'orientation
+        /// Si l'appareil est orienté en mode paysage
+        if UIDevice.current.orientation.isLandscape {
+            swipeLabel.text = "Swipe left to share"
+            iconSwipe.transform = CGAffineTransform(rotationAngle: (-CGFloat.pi/2))
+            swipe.direction = .left
+            /// Sinon l'appareil est orienté portrait
+        } else {
+            swipeLabel.text = "Swipe up to share"
+            iconSwipe.transform = CGAffineTransform(rotationAngle: 0.0)
+            swipe.direction = .up
+        }
+        
+        // On nettoie les gestes précédents
+        pictureView.gestureRecognizers?.forEach {
+            pictureView.removeGestureRecognizer($0)
+        }
+        
+        // Et on ajoute le nouveau geste
+        pictureView.addGestureRecognizer(swipe)
+    }
 }
 
