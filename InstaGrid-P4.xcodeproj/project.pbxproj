@@ -65,8 +65,7 @@
 				D146890227AD7920008F8DD7 /* AppDelegate.swift */,
 				D146890427AD7920008F8DD7 /* SceneDelegate.swift */,
 				D146890627AD7920008F8DD7 /* ViewController.swift */,
-				D146890827AD7920008F8DD7 /* Main.storyboard */,
-				D146890D27AD7922008F8DD7 /* LaunchScreen.storyboard */,
+				D146891F27AD7D81008F8DD7 /* View */,
 				D146891A27AD7B03008F8DD7 /* Supporting Files */,
 			);
 			path = "InstaGrid-P4";
@@ -80,6 +79,15 @@
 				D146891627AD7AE1008F8DD7 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D146891F27AD7D81008F8DD7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D146890827AD7920008F8DD7 /* Main.storyboard */,
+				D146890D27AD7922008F8DD7 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
