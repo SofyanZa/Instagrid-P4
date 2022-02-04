@@ -9,10 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
     
     // Connexion des éléments du storyboard grace au control drag
     // Outlets : Optionnal déballé car c'est toujours le cas avec les Outlets
@@ -29,6 +25,36 @@ class ViewController: UIViewController {
     // Ajout d'une variable permettant de savoir si une image a été tapée
     var viewTapped: UIImageView?
     
-
+    // Informe le contrôleur de vue que sa vue a été ajoutée à une hiérarchie de vues
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+    }
+    
+    // Appelé après le chargement de la vue du contrôleur en mémoire
+    // Cette méthode est lancée directement dans notre application
+        override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Créer et ajouter un outil de reconnaissance de gestes tactiles pour le 4 UIImageView
+            // Les selectors permettent de passer en parametre une fonction
+            // UiTapGesture permet de gerer les gestes de l'utilisateur sur l'ecran tactiles
+            // Il a besoin de trois infos :
+            /// Target : Le responsable de "gérer de geste", le controleur le plus souvent
+            /// Action : Quelle action effectuer ?
+            /// La view : quelle vue doit détecter le geste ?
+            // La méthode contient un parametre donc je dois le préciser comme ceci : function(_:)
+        let tapTopLeft = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
+        let tapTopRight = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
+        let tapBottomRight = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
+        let tapBottomLeft = UITapGestureRecognizer(target: self, action: #selector(function(_:)))
+        topLeftImageView.addGestureRecognizer(tapTopLeft)
+        topRightImageView.addGestureRecognizer(tapTopRight)
+        bottomRightImageView.addGestureRecognizer(tapBottomRight)
+        bottomLeftImageView.addGestureRecognizer(tapBottomLeft)
+        
+        
+    }
+    
 }
 
