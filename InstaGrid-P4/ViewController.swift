@@ -126,5 +126,27 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Fonction permettant de convertir PictureView en image et de le partager
+    private func convertAndShareView() {
+        
+        let image = pictureView.asImage()  /// On définit ce que sera l'image
+        let imageToShare = [image]   /// On crée un tableau d'image que l'on pourra partager ensuite
+        
+        // UiActivityViewController permet l'envoie d'items via sms, mail, ou reseaux sociaux etc
+        // plusieurs methodes sont associé à cet objet, on les utilise ci dessous
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        
+        // Exclure certains types d'activités de la liste
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.openInIBooks ]
+        
+        // Partage ou annulation
+        activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            // Activation showPictureView function
+            self.showPictureView()
+        }
+        
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
 
