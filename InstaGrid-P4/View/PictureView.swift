@@ -66,5 +66,39 @@ extension PictureView {
     }
 }
 
-
-
+// Ajout des paramètres d'ombre au constructeur d'interface
+extension PictureView {
+    // Le mot @IBInspectable vous permet de spécifier que certaines parties d'une UIView sous-classe personnalisée doivent être configurables dans Interface Builder. Seuls certains types de valeurs sont pris en charge (booléens, nombres, chaînes, points, rectangles, couleurs et images),
+    
+    // CGfloat type qui définit un nombre décimal pour placer une vue
+    @IBInspectable var shadowRadius: CGFloat {
+        get { return layer.shadowRadius }
+        set { layer.shadowRadius = newValue }
+    }
+    
+    @IBInspectable var shadowOpacity: Float {
+        get { return layer.shadowOpacity }
+        set { layer.shadowOpacity = newValue }
+    }
+    // CGSize type qui définit une zone de l'ecran
+    @IBInspectable var shadowOffset: CGSize {
+        get { return layer.shadowOffset }
+        set { layer.shadowOffset = newValue }
+    }
+    
+    @IBInspectable var shadowColor: UIColor? {
+        get {
+            if let color = layer.shadowColor {
+                return UIColor(cgColor: color)
+            }
+            return nil
+        }
+        set {
+            if let color = newValue {
+                layer.shadowColor = color.cgColor
+            } else {
+                layer.shadowColor = nil
+            }
+        }
+    }
+}

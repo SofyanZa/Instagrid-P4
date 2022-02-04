@@ -10,7 +10,6 @@
 		D141C3D827AD919D0089AC01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146890627AD7920008F8DD7 /* ViewController.swift */; };
 		D141C3DB27AD93730089AC01 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D141C3DA27AD93730089AC01 /* Theme.swift */; };
 		D146890327AD7920008F8DD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146890227AD7920008F8DD7 /* AppDelegate.swift */; };
-		D146890527AD7920008F8DD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146890427AD7920008F8DD7 /* SceneDelegate.swift */; };
 		D146890A27AD7920008F8DD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146890827AD7920008F8DD7 /* Main.storyboard */; };
 		D146890F27AD7922008F8DD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146890D27AD7922008F8DD7 /* LaunchScreen.storyboard */; };
 		D146891727AD7AE1008F8DD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D146891627AD7AE1008F8DD7 /* Assets.xcassets */; };
@@ -23,7 +22,6 @@
 		D141C3DA27AD93730089AC01 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		D14688FF27AD7920008F8DD7 /* InstaGrid-P4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InstaGrid-P4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D146890227AD7920008F8DD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D146890427AD7920008F8DD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D146890627AD7920008F8DD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D146890927AD7920008F8DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D146890E27AD7922008F8DD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 				D146891827AD7AF5008F8DD7 /* Delm-Medium.otf */,
 				D146891627AD7AE1008F8DD7 /* Assets.xcassets */,
 				D146890227AD7920008F8DD7 /* AppDelegate.swift */,
-				D146890427AD7920008F8DD7 /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -185,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D146890327AD7920008F8DD7 /* AppDelegate.swift in Sources */,
-				D146890527AD7920008F8DD7 /* SceneDelegate.swift in Sources */,
 				D141C3DB27AD93730089AC01 /* Theme.swift in Sources */,
 				D141C3D827AD919D0089AC01 /* ViewController.swift in Sources */,
 				D146892127AD89CA008F8DD7 /* PictureView.swift in Sources */,

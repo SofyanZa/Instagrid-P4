@@ -10,6 +10,11 @@ import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
+    // Set the light status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     // Connexion des éléments du storyboard grace au control drag
     // Outlets : Optionnal déballé car c'est toujours le cas avec les Outlets
@@ -235,6 +240,8 @@ extension ViewController {
     /// - parameter gesture: Tap gesture
     @objc private func didTapView(_ gesture: UITapGestureRecognizer){
         
+        // Check the authorization for the photo library access
+        checkAuthorization()
         
         // Vérifiez si la vue tapée est une UIImageView
         guard let view = gesture.view as? UIImageView else { return }
