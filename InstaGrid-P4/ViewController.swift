@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonRight: UIButton!
     @IBOutlet weak var buttonCenter: UIButton!
     @IBOutlet weak var buttonLeft: UIButton!
+    @IBOutlet weak var pictureView: PictureView!
     @IBOutlet weak var topLeftImageView: UIImageView!
     @IBOutlet weak var topRightImageView: UIImageView!
     @IBOutlet weak var bottomLeftImageView: UIImageView!
@@ -71,6 +72,23 @@ class ViewController: UIViewController {
         
         // // Changement de style de l'imageVue
         changeStyle(sender)
+    }
+    
+    /// Changement du style de mise en page de pictureView
+    private func changeStyle(_ button: UIButton) {
+        
+        // Animation du changement de mise en page pour avoir un effet plus fluide lors du changement de layout
+        UIView.animate(withDuration: 0.1) {
+            
+            // Modifiez la mise en page en fonction du bouton appuyé
+            if button == self.buttonLeft { /// Si le bouton séléctionné est le bouton gauche
+                self.pictureView.style = .layout1 /// On lui attribue le style du layout 1
+            } else if button == self.buttonCenter {
+                self.pictureView.style = .layout2
+            } else if button == self.buttonRight {
+                self.pictureView.style = .layout3
+            }
+        }
     }
     
 }
