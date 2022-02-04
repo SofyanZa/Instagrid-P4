@@ -148,5 +148,28 @@ class ViewController: UIViewController {
         self.present(activityViewController, animated: true, completion: nil)
     }
     
+    /// PictureView réapparaît, notament apres avoir partagé une image
+    private func showPictureView(){
+        
+        // Déplacer l'imageView à sa place initiale
+        // identity transform efface efficacement notre vue de toute transformation prédéfinie, réinitialisant toutes les modifications qui ont été appliquées en modifiant la propriété
+        pictureView.transform = .identity
+        
+        // Puis on remet l'echelle à 0
+        pictureView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        
+        // Animation de la vue de l'image et la réapparition de l'icône/étiquette avec un effet de rebond
+          UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.pictureView.transform = .identity
+            self.swipeLabel.transform = .identity
+            self.iconSwipe.transform = .identity
+            
+            // Vérification de la position actuelle de l'appareil pour l'orientation de l'iconSwipe
+            if UIDevice.current.orientation.isLandscape {
+                self.iconSwipe.transform = CGAffineTransform(rotationAngle: (-CGFloat.pi/2))
+            }
+        })
+    }
+    
 }
 
